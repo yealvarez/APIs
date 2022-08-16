@@ -47,3 +47,15 @@
 # 3. JWT authentication bypass via weak signing key
 
 hashcat -a 0 -m 16500 eyJraWQiOiJhODBlZmVkMi0zNmU... /usr/share/wordlists/rockyou.txt
+# Once the hashcat exope the password:
+
+# Generate a forged signing key
+# Using Burp Decoder, Base64 encode the secret that you brute-forced in the previous section.
+# In Burp, go to the JWT Editor Keys tab and click New Symmetric Key. In the dialog, click Generate to generate a new key in JWK format. Note that you don't need to select a key size as this will automatically be updated later.
+# Replace the generated value for the k property with the Base64-encoded secret.
+# Click OK to save the key.
+# capture the trafic and modufy the JWT in the request
+# At the bottom of the tab, click Sign, then select the key that you generated in the previous section.
+# Make sure that the Don't modify header option is selected, then click OK. The modified token is now signed with the correct signature.
+# Send the request and observe that you have successfully accessed the other user.
+
